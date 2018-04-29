@@ -1,4 +1,4 @@
-package primeraEntrega;
+package primeraEntrega;	
 
 public class Nodo {
 	private Libro info;
@@ -6,6 +6,16 @@ public class Nodo {
 	public Nodo(Libro l){
 		this.info=l;
 		this.siguiente=null;
+	}
+	public Nodo getSiguiente() {
+		// TODO Auto-generated method stub
+		return this.siguiente;
+	}
+	public void setSiguiente(Nodo n) {
+		this.siguiente=n;
+	}
+	public Libro getInfo() {
+		return this.info;
 	}
 	
 }
