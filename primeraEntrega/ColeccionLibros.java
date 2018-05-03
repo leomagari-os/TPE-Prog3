@@ -1,19 +1,21 @@
 package primeraEntrega;
 
-import java.util.ArrayList;
+
 
 public class ColeccionLibros {
-	ArrayList<Libro>libros=null;
+	Lista libros=null;
 	public ColeccionLibros() {
 		
 	}
-	public void setLibros(ArrayList<Libro>l) {
+	public void setLibros(Lista l) {
 		this.libros=l;
 	}
 	public Lista getLibrosPorGenero(String genero){
 		Lista res=null;
-		for(int i=0;i<this.libros.size();i++) {
-			Libro l= libros.get(i);
+		Nodo n=this.libros.getHead();
+		
+		while(n!=null){
+			Libro l= n.getInfo();
 			String[] generos=l.getGeneros().split(" ");
 			for(int j=0;j<generos.length;j++) {
 				if(generos[j].equals(genero)){
@@ -24,6 +26,7 @@ public class ColeccionLibros {
 					break;
 				}
 			}
+			n=n.getSiguiente();
 		}
 		return res;
 	}
