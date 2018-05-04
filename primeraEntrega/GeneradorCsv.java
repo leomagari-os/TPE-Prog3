@@ -1,7 +1,6 @@
 package primeraEntrega;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 
@@ -13,20 +12,21 @@ public class GeneradorCsv {
 	public GeneradorCsv() {
 		
 	}
-	public void crearArchivoCSV(String nombreDeArchivo,ArrayList<Libro> libros) {
+	public void crearArchivoCSV(String nombreDeArchivo,Lista libros) {
 		this.nombreDeArchivo=nombreDeArchivo;
 		crearArchivoCSV(libros);
 	}
-	private  void crearArchivoCSV(ArrayList<Libro> libros) {
+	private  void crearArchivoCSV(Lista libros) {
 		final String NEXT_LINE = "\n";
 		try {
 			FileWriter fw = new FileWriter(this.nombreDeArchivo);
-			for(int i=0;i<libros.size();i++){
-				Libro l=libros.get(i);
-				fw.append(l.getTitulo());
+			Nodo n=libros.getHead();
+			while(n!=null) {
+				fw.append(n.getInfo().getTitulo());
 				fw.append(NEXT_LINE);
+				n=n.getSiguiente();
+				
 			}
-
 			fw.flush();
 			fw.close();
 			System.out.println("Se creo el Archivo '"+this.nombreDeArchivo+"' con el nombre de los libros.");
