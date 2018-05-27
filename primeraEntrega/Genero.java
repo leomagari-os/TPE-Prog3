@@ -5,12 +5,15 @@ public class Genero {
 	private Lista libros;
 	public Genero(String t){
 		this.titulo=t;
-		this.libros=null;
+		this.libros=new Lista();
 	}
 	public void insertarLibro(Libro l) {
 		this.libros.insertar(l);
 	}
 	public String getTitulo() {
 		return this.titulo;
+	}
+	public Lista getLibros() {
+		return this.libros;
 	}
 }

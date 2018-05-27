@@ -9,7 +9,7 @@ public class Lista {
 	}
 	public void insertar(Libro l) {
 		if(this.head==null) {
-			this.head=new Nodo(new Libro(l.getTitulo(),l.getAutor(),l.getCantPaginas(),l.getGeneros()));
+			this.head=new Nodo(new Libro(l.getTitulo(),l.getAutor(),l.getCantPaginas()));
 			this.last=this.head;
 		}else {
 			insertar(this.last,l);

@@ -22,7 +22,7 @@ public class LectorCsv {
 		}
 	
 	}
-	public Lista getLibros(){
+	public void getIndice(ArbolBinario indice){
 		Lista res =new Lista();
 		
 		try{ 		
@@ -30,8 +30,14 @@ public class LectorCsv {
             line = this.br.readLine();
         	while(line!=null) {
         		String[] linea= line.split(cvsSplitBy);
-       			Libro l=new Libro(linea[0],linea[1],new Integer(linea[2]).intValue(),linea[3]);
-       			res.insertar(l);
+       			//Libro l=new Libro(linea[0],linea[1],new Integer(linea[2]).intValue(),linea[3]);
+        		Libro l=new Libro(linea[0],linea[1],new Integer(linea[2]).intValue());
+        		String[] generos= linea[3].split(" ");
+        		for(int i=0;i<generos.length;i++) {
+        			Genero g =new Genero(generos[i]);
+        			indice.insertarLibroEnGenero(l,g);
+        		}
+        		res.insertar(l);
        			line = br.readLine();
        			
        		}
@@ -42,7 +48,7 @@ public class LectorCsv {
 
 
        
-        return res;
+//        return res;
 
     }
 
