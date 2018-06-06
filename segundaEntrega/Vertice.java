@@ -1,6 +1,8 @@
 package segundaEntrega;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Vertice {
 	private ArrayList<Arista> adyacentes;
@@ -31,11 +33,34 @@ public class Vertice {
 		return null;
 	}
 	public String toString(){
-		String res="Vertice: "+this.etiqueta+"\n";
-		res+="Adyacentes:\n";
+		String res="";
 		for (int i = 0; i < this.adyacentes.size(); i++) {
-			res+=this.adyacentes.get(i).getDestino().getEtiqueta()+"\n";
+			Arista actual=this.adyacentes.get(i);
+			res+=this.etiqueta+" -> "+actual.getDestino().getEtiqueta()+"[label=\""+actual.getPeso()
+					+".0\",weight=\""+actual.getPeso()+".0\"];\n";
 		}
 		return res;
+	}
+	public ArrayList<Arista> getGenerosMasBuscados(int n){
+		ArrayList<Arista>res=new ArrayList<Arista>();
+		if(this.adyacentes.size()<=n){
+			return this.adyacentes;
+		}else{
+			Collections.sort(this.adyacentes, new Comparator<Arista>() {//compara por peso
+		        @Override
+		        public int compare(Arista a1, Arista a2){
+		            return  a1.compareTo(a2);
+		        }
+		    });
+			
+			for (int i = 1; i < n+1; i++) {
+				res.add(this.adyacentes.get(this.adyacentes.size()-i));
+			}
+		}
+		
+		return res;
+	}
+	public ArrayList<Arista> getAdyacentes() {
+		return this.adyacentes;
 	}
 }

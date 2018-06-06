@@ -1,6 +1,6 @@
 package segundaEntrega;
 
-public final class Arista {
+public class Arista {
 	private Vertice origen;
 	private Vertice destino;
 	private int peso;
@@ -20,6 +20,11 @@ public final class Arista {
 	}
 	public void contarArista(){
 		this.peso++;
+	}
+	public int compareTo(Arista a){
+		Integer pesoLocal= new Integer(this.peso);
+		Integer pesoA= new Integer(a.getPeso());
+		return pesoLocal.compareTo(pesoA);
 	}
 
 }
