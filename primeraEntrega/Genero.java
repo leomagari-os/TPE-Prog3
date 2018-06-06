@@ -1,6 +1,7 @@
 package primeraEntrega;
 
 public class Genero {
+	private static int comparados;
 	private String titulo;
 	private Lista libros;
 	public Genero(String t){
@@ -15,5 +16,11 @@ public class Genero {
 	}
 	public Lista getLibros() {
 		return this.libros;
+	}
+	public static void comparado(){
+		comparados++;
+	}
+	public static int getComparados(){
+		return comparados;
 	}
 }

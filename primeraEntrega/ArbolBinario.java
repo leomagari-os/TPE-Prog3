@@ -2,10 +2,14 @@ package primeraEntrega;
 
 public class ArbolBinario {
 	private SubArbol raiz; 
+	private int compBusqueda;
+	private int cantidadGeneros;
 	public ArbolBinario() {
+		this.compBusqueda=0;
 		this.raiz= null;
 	}
 	private void insertarOrdenado(Genero g, Libro l,SubArbol pos) {
+		Genero.comparado();
 		if(pos.getInfo().getTitulo().equals(g.getTitulo())){
 			pos.getInfo().insertarLibro(l);
 		}
@@ -13,12 +17,14 @@ public class ArbolBinario {
 			if(pos.getIzq()!=null){
 				insertarOrdenado(g,l,pos.getIzq());
 			}else{
+				this.cantidadGeneros++;
 				pos.setIzq(new SubArbol(g));
 			}
 		}else if(pos.getInfo().getTitulo().compareTo(g.getTitulo())<0){
 			if(pos.getDer()!=null){
 				insertarOrdenado(g,l,pos.getDer());
 			}else{
+				this.cantidadGeneros++;
 				pos.setDer(new SubArbol(g));
 			}
 		}
@@ -33,9 +39,12 @@ public class ArbolBinario {
 	}
 	public void insertarLibroEnGenero(Libro l, Genero g) {
 		g.insertarLibro(l);
+		
 		if(this.raiz!=null) {
+			
 			insertarOrdenado(g,l,this.raiz);
 		}else {
+			this.cantidadGeneros++;
 			this.raiz=new SubArbol(g);
 			
 		}
@@ -52,6 +61,7 @@ public class ArbolBinario {
 	}
 	private Lista getLibrosDelGenero(String genero, SubArbol pos) {
 		Lista res=null;
+		this.compBusqueda++;
 		if(pos.getInfo().getTitulo().equals(genero)){
 			res= pos.getInfo().getLibros();
 		}else if(pos.getInfo().getTitulo().compareTo(genero)>0){
@@ -65,5 +75,11 @@ public class ArbolBinario {
 		}
 		return res;
 		
+	}
+	public int getCompBusqueda(){
+		return this.compBusqueda;
+	}
+	public int getCantGeneros(){
+		return this.cantidadGeneros;
 	}
 }
