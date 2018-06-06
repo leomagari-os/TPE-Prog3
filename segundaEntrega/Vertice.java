@@ -11,13 +11,15 @@ public class Vertice {
 		this.etiqueta=e;
 		this.adyacentes=new ArrayList<Arista>();
 	}
-	public void addAdyacente(Vertice v, int p){
+	public int addAdyacente(Vertice v, int p){
 		Arista a=containsAdyacente(v);
 		if(a!=null){
 			a.contarArista();
+			return 0;
 		}else{
 			a=new Arista(this, v, p);
 			this.adyacentes.add(a);
+			return 1;
 		}
 	}
 	

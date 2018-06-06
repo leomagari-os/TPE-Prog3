@@ -10,10 +10,12 @@ public class LectorCsv {
 	private String line = "";
 	private String cvsSplitBy = ",";
 	private BufferedReader br;
+	private int cantidadBusquedas;
 	
 	public LectorCsv(String file,String splitBy){
 		this.csvFile=file;
 		this.cvsSplitBy=splitBy;
+		this.cantidadBusquedas=0;
 		try{
 			this.br = new BufferedReader(new FileReader(csvFile));
 		} catch (IOException e) {
@@ -29,7 +31,8 @@ public class LectorCsv {
             line = this.br.readLine();
             
         	while(line!=null) {
-        		String[] generos= line.split(cvsSplitBy);  
+        		String[] generos= line.split(cvsSplitBy);
+        		this.cantidadBusquedas+=generos.length;
         		g.addVertice(new Vertice(generos[0]));
         		for(int i=1;i<generos.length;i++) {
         			Vertice actual=new Vertice(generos[i]);
@@ -44,7 +47,10 @@ public class LectorCsv {
 		}    // use comma as separator
 
 	}
-
+	
+	public int getCantBusquedas(){
+		return this.cantidadBusquedas;
+	}
 
 		
 	
